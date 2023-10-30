@@ -20,10 +20,10 @@ class TestServiceBmrsBuildUrlTestCase(TestCase):
         
         period = '1'
         report_name = 'B1770'
-        file_format = 'csv'
+        file_format = 'xml'
         settlement_date = '2023-10-01'
         
-        desired_url_outcome = 'https://api.bmreports.com/BMRS/B1770/V1?APIKey=2zsd43hl5hjii36&&SettlementDate=2023-10-01&Period=1&ServiceType=csv'
+        desired_url_outcome = 'https://api.bmreports.com/BMRS/B1770/V1?APIKey=2zsd43hl5hjii36&&SettlementDate=2023-10-01&Period=1&ServiceType=xml'
         
         url = self._service_bmrs_build_url.build_url(period=period,
                                                      report_name=report_name, 
@@ -33,6 +33,7 @@ class TestServiceBmrsBuildUrlTestCase(TestCase):
         self.assertIsNotNone(url)
         self.assertIsInstance(url, str)
         self.assertEqual(url, desired_url_outcome)
+        
         
     def test_invalid_period(self):
         """
@@ -45,6 +46,7 @@ class TestServiceBmrsBuildUrlTestCase(TestCase):
             self._service_bmrs_build_url.build_url(period="100", report_name="B1770", settlement_date="2023-10-01")
         self.assertIn("Invalid 'period'. It should be a number in the range 1-50.", cm.output[0])
 
+
     def test_invalid_settlement_date(self):
         """
         Test the scenario where an invalid settlement date is provided.
@@ -55,6 +57,7 @@ class TestServiceBmrsBuildUrlTestCase(TestCase):
         with self.assertLogs('bmrs.services', level='ERROR') as cm:
             self._service_bmrs_build_url.build_url(period="1", report_name="B1770", settlement_date="2023-113-01")
         self.assertIn("Invalid 'settlement_date'. It should be in the format YYYY-MM-DD.", cm.output[0])
+
 
     def test_invalid_service_type(self):
         """

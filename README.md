@@ -18,6 +18,9 @@
 |MAX_TRIES | 3
 |TIMEOUT | 10
 |VERSION | V1
+|MAX_CONCURRENCT_TASKS| 24
+|B1770_COLUMN|  <span style="color:green">imbalancePriceAmountGBP
+|B1780_COLUMN|  <span style="color:green">imbalanceQuantityMAW
 |API_SCRIPTING_KEY | <span style="color:red">Insert Scripting key Generated</span>
 |HOST| https://api.bmreports.com/BMRS/
 |URL_END_STR| {SettlementDate}&Period={Period}&ServiceType={ServiceType}

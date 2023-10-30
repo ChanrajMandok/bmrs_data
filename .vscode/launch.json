@@ -43,5 +43,17 @@
             ],
             "django": true
         },
+        {
+            "name": "Run Main",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "runscript",
+                "-v3",
+                "script_run_main"
+            ],
+            "django": true
+        }
     ]
 }

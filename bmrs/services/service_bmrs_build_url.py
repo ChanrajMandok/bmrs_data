@@ -18,7 +18,7 @@ class ServiceBmrsBuildUrl:
                   version: Optional[str] = None,
                   url_end_str: Optional[str] = None,
                   api_scripting_key: Optional[str] = None,
-                  service_type: str = "csv") -> Optional[str]:
+                  service_type: str = "xml") -> Optional[str]:
         """
         Constructs the BMRS URL based on provided parameters.
         
@@ -30,32 +30,32 @@ class ServiceBmrsBuildUrl:
             version: API version (typically injected by decorator).
             url_end_str: URL ending format string (typically injected by decorator).
             api_scripting_key: API key for BMRS (typically injected by decorator).
-            service_type: Desired response format ('csv' or 'xml'). Default is 'csv'.
+            service_type: Desired response format ('csv' or 'xml'). Default is 'xml'.
         """
         
         # Checks
         try:
             if not 1 <= int(period) <= 50:
-                logger.error("Invalid 'period'. It should be a number in the range 1-50.")
+                logger.error(f"{self.__class__.__name__}: Invalid 'period'. It should be a number in the range 1-50.")
                 return None
         except ValueError:
-            logger.error("'period' should be a string representation of a number.")
+            logger.error(f"{self.__class__.__name__}: 'period' should be a string representation of a number.")
             return None
 
         if not report_name or not isinstance(report_name, str):
-            logger.error("Invalid 'report_name'. It should be a non-empty string.")
+            logger.error(f"{self.__class__.__name__}: Invalid 'report_name'. It should be a non-empty string.")
             return None
 
         if not settlement_date or not re.match(r"^\d{4}-\d{2}-\d{2}$", settlement_date):
-            logger.error("Invalid 'settlement_date'. It should be in the format YYYY-MM-DD.")
+            logger.error(f"{self.__class__.__name__}: Invalid 'settlement_date'. It should be in the format YYYY-MM-DD.")
             return None
 
         if service_type not in ['csv', 'xml']:
-            logger.error("Invalid 'service_type'. Allowed values are 'csv' and 'xml'.")
+            logger.error(f"{self.__class__.__name__}: Invalid 'service_type'. Allowed values are 'csv' and 'xml'.")
             return None
 
         if not all([host, version, url_end_str, api_scripting_key]):
-            logger.error("Some essential parameters are missing or empty.")
+            logger.error(f"{self.__class__.__name__}: Some essential parameters are missing or empty.")
             return None
         
         # URL Construction
