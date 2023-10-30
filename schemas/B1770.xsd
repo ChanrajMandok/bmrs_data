@@ -1,0 +1,54 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="responseMetadata">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:short" name="httpCode"/>
+              <xs:element type="xs:string" name="errorType"/>
+              <xs:element type="xs:string" name="description"/>
+              <xs:element type="xs:string" name="cappingApplied"/>
+              <xs:element type="xs:integer" name="cappingLimit"/>
+              <xs:element type="xs:string" name="queryString"/>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="responseBody">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element type="xs:string" name="dataItem"/>
+              <xs:element name="responseList">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="item" maxOccurs="unbounded" minOccurs="0">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element type="xs:string" name="timeSeriesID" minOccurs="0"/>
+                          <xs:element type="xs:string" name="businessType" minOccurs="0"/>
+                          <xs:element type="xs:string" name="controlArea" minOccurs="0"/>
+                          <xs:element type="xs:string" name="settlementDate" minOccurs="0"/>
+                          <xs:element type="xs:string" name="settlementPeriod" minOccurs="0"/>
+                          <xs:element type="xs:string" name="imbalancePriceAmountGBP" minOccurs="0"/>
+                          <xs:element type="xs:string" name="priceCategory" minOccurs="0"/>
+                          <xs:element type="xs:string" name="curveType" minOccurs="0"/>
+                          <xs:element type="xs:string" name="resolution" minOccurs="0"/>
+                          <xs:element type="xs:string" name="documentType" minOccurs="0"/>
+                          <xs:element type="xs:string" name="processType" minOccurs="0"/>
+                          <xs:element type="xs:string" name="activeFlag" minOccurs="0"/>
+                          <xs:element type="xs:string" name="docStatus" minOccurs="0"/>
+                          <xs:element type="xs:string" name="documentID" minOccurs="0"/>
+                          <xs:element type="xs:integer" name="documentRevNum" minOccurs="0"/>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
