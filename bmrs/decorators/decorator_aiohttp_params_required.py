@@ -5,13 +5,13 @@ from bmrs.decorators import logger
 
 def aiohttp_params_required(func):
     """
-    Decorator that checks for required TIMEOUT and MAX_TRIES environment variables 
-    and updates the kwargs of the wrapped function with these variables if they exist.
+    Decorator that checks for required TIMEOUT, MAX_CONCURRENT_TASKS and MAX_TRIES 
+    variables and updates the kwargs of the wrapped function with these variables if they exist.
     """
     def wrapper(*args, **kwargs):
         
         # List of expected environment variables
-        env_vars = ['TIMEOUT', 'MAX_TRIES', 'MAX_CONCURRENT_TASKS']
+        env_vars = ['TIMEOUT', 'MAX_TRIES', 'MAX_CONCURRENT_TASKS', 'RATE_LIMIT_SLEEP_TIME']
         env_data = {}
 
         for var in env_vars:

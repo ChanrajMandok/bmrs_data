@@ -40,6 +40,7 @@ class TestAllDecoratorsTestCase(TestCase):
                                                timeout, 
                                                max_tries,
                                                max_concurrent_tasks,
+                                               rate_limit_sleep_time,
                                                **kwargs):
         """
         Test that the request_params_required decorator correctly populates 
@@ -49,10 +50,12 @@ class TestAllDecoratorsTestCase(TestCase):
         self.assertIsNotNone(timeout)
         self.assertIsNotNone(max_tries)
         self.assertIsNotNone(max_concurrent_tasks)
+        self.assertIsNotNone(rate_limit_sleep_time)
         
         self.assertIsInstance(timeout, int)
         self.assertIsInstance(max_tries, int)
         self.assertIsInstance(max_concurrent_tasks, int)
+        self.assertIsInstance(rate_limit_sleep_time, int)
         
         
     @report_column_headers_required

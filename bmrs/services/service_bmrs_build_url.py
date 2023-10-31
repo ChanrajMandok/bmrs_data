@@ -34,31 +34,38 @@ class ServiceBmrsBuildUrl:
         """
         
         # Checks
+                # Validating the 'period' parameter
         try:
+            # Ensure 'period' is an integer between 1 and 50 (inclusive)
             if not 1 <= int(period) <= 50:
                 logger.error(f"{self.__class__.__name__}: Invalid 'period'. It should be a number in the range 1-50.")
                 return None
         except ValueError:
+            # Catch the error if 'period' is not convertible to an integer
             logger.error(f"{self.__class__.__name__}: 'period' should be a string representation of a number.")
             return None
 
+        # Validate the 'report_name' parameter to ensure it's a non-empty string
         if not report_name or not isinstance(report_name, str):
             logger.error(f"{self.__class__.__name__}: Invalid 'report_name'. It should be a non-empty string.")
             return None
 
+        # Validate the 'settlement_date' format using regex matching
         if not settlement_date or not re.match(r"^\d{4}-\d{2}-\d{2}$", settlement_date):
             logger.error(f"{self.__class__.__name__}: Invalid 'settlement_date'. It should be in the format YYYY-MM-DD.")
             return None
 
+        # Check that 'service_type' is either 'csv' or 'xml'
         if service_type not in ['csv', 'xml']:
             logger.error(f"{self.__class__.__name__}: Invalid 'service_type'. Allowed values are 'csv' and 'xml'.")
             return None
 
+        # Check for missing or empty essential parameters
         if not all([host, version, url_end_str, api_scripting_key]):
             logger.error(f"{self.__class__.__name__}: Some essential parameters are missing or empty.")
             return None
         
-        # URL Construction
+        # Construct the URL using the provided parameters
         url = (f"{host}{report_name}/{version}?APIKey={api_scripting_key}&"
                f"{url_end_str.format(SettlementDate=settlement_date, Period=period, ServiceType=service_type)}")
         

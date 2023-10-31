@@ -1,7 +1,7 @@
 import logging
 
 # create logger
-logger = logging.getLogger('bmrs.services')
+logger = logging.getLogger('bmrs.services  ')
 logger.setLevel(logging.DEBUG)
 
 logger.propagate = 0
