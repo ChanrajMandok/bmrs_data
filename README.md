@@ -8,6 +8,7 @@
 | :-| :-
 |Create a virtual environment| python -m venv .venv
 |Install relevant libraries | pip install -r requirements.txt|
+|Create .env | Populate with Environment Variables [var=value]|
 |Create launch.json file| Open and Paste contents of launch_items.txt (ensure commas are correct) and Save|
 |Run|Select Dropdown Menu and Select Run main|
 
