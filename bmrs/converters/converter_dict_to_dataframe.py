@@ -10,6 +10,7 @@ class ConverterDictToDataFrame:
     A converter class to transform a dictionary to a pandas DataFrame object.
     """
     
+    
     @report_column_headers_required
     def __init__(self, 
                  b1770_column: str, 

@@ -9,6 +9,7 @@ from bmrs.decorators.decorator_bmrs_api_vars_required import \
 
 class ServiceBmrsBuildUrl:
 
+
     @bmrs_api_vars_required
     def build_url(self,
                   period: str,
@@ -46,8 +47,9 @@ class ServiceBmrsBuildUrl:
             return None
 
         # Validate the 'report_name' parameter to ensure it's a non-empty string
-        if not report_name or not isinstance(report_name, str):
-            logger.error(f"{self.__class__.__name__}: Invalid 'report_name'. It should be a non-empty string.")
+        if not report_name or not isinstance(report_name, str) \
+                                        or not re.match(r'^B\d+$', report_name):
+            logger.error(f"{self.__class__.__name__}: Invalid 'report_name'. It should be a non-empty string starting with 'B' followed by numbers.")
             return None
 
         # Validate the 'settlement_date' format using regex matching

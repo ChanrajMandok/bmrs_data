@@ -34,7 +34,7 @@ This trading research repository was created as a proof of concept and should no
 
 # Executive Summary
 
-This repository includes code designed to query BMRS reports (Balancing Mechanism Reporting Service). The primary demonstration of this functionality is encapsulated in the 'ServiceRunMain' class.
+This repository includes code designed to query BMRS reports (Balancing Mechanism Reporting Service). The primary demonstration of this functionality is encapsulated in the `ServiceRunMain` class.
 
 # Methodology
 
@@ -45,6 +45,10 @@ Decorators are utilized in your code to import environment variables, and this a
 - **Security:** By leveraging environment variables, sensitive information, and configurations are kept out of the actual code. This ensures that the data remains secure, especially when shared or stored in repositories.
 
 - **Modularity:** Decorators provide a way to modularly enhance or modify functions without changing their actual code. In the context of environment variables, they allow dynamic fetching of configurations, ensuring the core function remains unchanged.
+
+## URL Builder
+
+The `ServiceBmrsBuildUrl` service is a specialized URL generator tailored for fetching BMRS reports. It validates input parameters to ensure the correct data types and values are used, thus creating well-formed URLs. The service is designed to be flexible and extendable, allowing for the addition of new report queries without the need to alter the existing code structure. It incorporates comprehensive error checking, which guarantees that only valid URLs are generated for API calls.
 
 ## Date Retrieval Via Asyncio
 
@@ -68,17 +72,16 @@ To ensure the robustness and clarity of our data processing, I've employed a mod
 
 - **B1780 Report:** This analysis is more nuanced. Initially, the aggregate of all imbalances is identified. This cumulative value is then normalized against the number of dataframe entries, yielding the daily imbalance unit rate. This rate offers a snapshot of average imbalance per unit time. Moreover, the _calculate_absolute_imbalance_volumes function refines the analysis by examining the magnitude of imbalances, disregarding their direction. Through hourly data resampling, we can discern the hour of maximum absolute imbalance, highlighting periods of peak deviation.
 
-
 # Output
 
 ### Logging visualization showcasing the efficiency and low latency of asynchronous API calls and the outputs required by the task
-![logs](output_images/smartest_logging.png)
+![logs](output_images/bmrs_data_logging.png)
 
 ### Visualization of B1770 report data Time Series
-![b1770](output_images/smartest_b1770_plot.png)
+![b1770](output_images/bmrs_data_b1770_plot.png)
 
 ### Visualization of B1780 report data Time Series
-![b1780](output_images/smartest_b1780_plot.png)
+![b1780](output_images/bmrs_data_b1780_plot.png)
 
 
 # Future Developments

@@ -13,6 +13,7 @@ from bmrs.services.service_bmrs_build_url import ServiceBmrsBuildUrl
 
 class ServiceBmrsDataRetriever:
     
+    
     @aiohttp_params_required
     def __init__(self,
                  timeout, 
@@ -99,6 +100,7 @@ class ServiceBmrsDataRetriever:
         
         return flattened_results
     
+    
     async def retrieve_data(self,
                             period: str,
                             report_name: str, 
@@ -130,6 +132,9 @@ class ServiceBmrsDataRetriever:
                                                report_name=report_name,
                                                service_type=file_format,
                                                settlement_date=settlement_date)
+        
+        if not url: 
+            return None
         
         # Setting a timeout for the request.
         timeout = ClientTimeout(total=self.timeout)

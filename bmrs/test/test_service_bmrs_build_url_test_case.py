@@ -5,9 +5,11 @@ from bmrs.services.service_bmrs_build_url import ServiceBmrsBuildUrl
 
 class TestServiceBmrsBuildUrlTestCase(TestCase): 
     
+    
     @mock.patch("bmrs.services.service_bmrs_build_url.bmrs_api_vars_required", lambda x: x)
     def setUp(self):
         self._service_bmrs_build_url = ServiceBmrsBuildUrl()
+
 
     def test_service_bmrs_build_url(self):
         """Test the functionality of the ServiceBmrsBuildUrl class."""
@@ -25,6 +27,7 @@ class TestServiceBmrsBuildUrlTestCase(TestCase):
                                                      service_type=file_format,
                                                      settlement_date=settlement_date)
         
+
         self.assertIsNotNone(url)
         self.assertIsInstance(url, str)
         self.assertEqual(url, desired_url_outcome)

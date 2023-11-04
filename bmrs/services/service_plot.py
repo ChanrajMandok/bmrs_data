@@ -11,8 +11,10 @@ class ServicePlot:
     A service to generate plots for BMRS data, focusing on imbalance metrics.
     """
     
+    
     def __init__(self) -> None:
         self.service_bmrs_dataframe_analyser = ServiceBmrsDataframeAnalyser()
+        
         
     def plot(self, 
              report_name: str,

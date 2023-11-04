@@ -7,6 +7,7 @@ from bmrs.decorators.decorator_report_column_headers_required import \
 
 class ServiceBmrsDataframeAnalyser:
     
+    
     @report_column_headers_required
     def __init__(self, 
                  b1770_column: str, 
