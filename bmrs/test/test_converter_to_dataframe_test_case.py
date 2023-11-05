@@ -1,17 +1,26 @@
 import json
 import pandas as pd
 
+from unittest.mock import Mock
 from django.test import TestCase
+from bmrs.converters import logger
 from bmrs.converters.converter_dict_to_dataframe import ConverterDictToDataFrame
 
 
 class TestConverterToDataframeTestCase(TestCase):
     """Test cases for the ConverterDictToDataFrame."""
     
-    
     def setUp(self):
         """Set up test case dependencies."""
         self.converter_dict_to_dataframe = ConverterDictToDataFrame()
+
+        # Mock the logger used in the converter class
+        self.original_logger = logger
+        ConverterDictToDataFrame.logger = Mock()
+
+    def tearDown(self):
+        """Restore the original logger after tests."""
+        ConverterDictToDataFrame.logger = self.original_logger
 
 
     def test_converter_to_dataframe(self):

@@ -72,6 +72,20 @@ To ensure the robustness and clarity of our data processing, I've employed a mod
 
 - **B1780 Report:** This analysis is more nuanced. Initially, the aggregate of all imbalances is identified. This cumulative value is then normalized against the number of dataframe entries, yielding the daily imbalance unit rate. This rate offers a snapshot of average imbalance per unit time. Moreover, the _calculate_absolute_imbalance_volumes function refines the analysis by examining the magnitude of imbalances, disregarding their direction. Through hourly data resampling, we can discern the hour of maximum absolute imbalance, highlighting periods of peak deviation.
 
+## Testing
+
+In this repository, I have developed and implemented a comprehensive suite of tests, ensuring robustness and reliability across various components. The test cases are designed with precision emphasizing functionality, edge case coverage, and system stability.
+
+- **Decorator Tests (TestAllDecoratorsTestCase):**  These tests validate decorators: `bmrs_api_vars_required`, `aiohttp_params_required`, and `report_column_headers_required`. They ensure essential parameters and report headers are correctly injected and handled, showcasing the effectiveness of these decorators in streamlining function configurations.
+
+- **ServiceBmrsBuildUrl Tests:** These tests confirm the accuracy of URL construction for the BMRS API, ensuring that URL generation aligns precisely with specified parameters.
+
+- **ServiceBmrsDataRetriever Tests:** These tests validate the functionality of data retrieval, including handling invalid report names and rate limit exceptions, ensuring the class operates effectively under various conditions.
+
+- **ConverterDictToDataFrame Tests::** Aimed at verifying the accurate conversion of dictionaries to pandas DataFrames, these tests ensure data integrity and correct data type handling. Additional measures like logger mocking focus on core functionality without external interference.
+
+The tests employ mocks and patches where necessary to isolate components, enhancing test accuracy and efficiency. This testing methodology not only bolsters the reliability of individual components but also reinforces the overall dependability of the software.
+
 # Output
 
 ### Logging visualization showcasing the efficiency and low latency of asynchronous API calls and the outputs required by the task
@@ -86,7 +100,7 @@ To ensure the robustness and clarity of our data processing, I've employed a mod
 
 # Future Developments
 **Comprehensive Unit Testing:**
-While the repository currently includes a couple of unit tests, comprehensive testing is crucial to ensure the reliability and robustness of the code. Future development should aim to:
+While the repository currently includes unit tests, comprehensive testing is crucial to ensure the reliability and robustness of the code. Future development should aim to:
 
 - Achieve full test coverage for all services.
 - Implement tests for edge cases and potential anomalies that may arise from changes in the BMRS data or updates to external libraries.
@@ -97,3 +111,8 @@ The current modular design of the 'service_bmrs_data_retriever' is versatile, al
 
 - Develop and integrate parsers or converters tailored to the unique structure of each BMRS report.
 - Ensure that the system is equipped to handle the vast array of response formats and data structures that different BMRS reports may present.
+
+**Optimised Asycnio Event Loop Error Handeling and Rate limit logic:**
+
+- Implement sophisticated error handling within the asyncio event loop to manage exceptions and operational errors seamlessly. 
+- Create robsut timeout handelling to allow this service to retireve 1000's of datapoints 
