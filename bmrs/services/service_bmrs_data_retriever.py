@@ -1,3 +1,4 @@
+import ssl 
 import time
 import asyncio
 import xmltodict
@@ -136,12 +137,17 @@ class ServiceBmrsDataRetriever:
         if not url: 
             return None
         
+        # Creating an SSL context
+        ssl_context = ssl.create_default_context()
+        ssl_context.check_hostname = False
+        ssl_context.verify_mode = ssl.CERT_NONE
+
         # Setting a timeout for the request.
         timeout = ClientTimeout(total=self.timeout)
         for attempt in range(self.max_retries):
             try:
                 async with ClientSession(timeout=timeout) as session:
-                    response = await session.get(url)
+                    response = await session.get(url, ssl=ssl_context)
                     
                     # If rate limited, log it, sleep for specified time, and retry.
                     if response.status == 429:
